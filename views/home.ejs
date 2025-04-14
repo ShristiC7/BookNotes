@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+<main class="home">
+  <h4 class="tag1" style="margin-bottom:0px ;">A personal book journal</h4>
+  <h1 class="heading" style="font-size: 90px; margin:0px;">My Book Notes</h1>
+  <p class="tag1">
+    A place to store names of all the books and your take aways..
+  </p> 
+  <span class="text-box">
+    <a href="/add" class="btn btn-white btn-animated btn2" method="get">Add new</a>
+  </span>
+  <span class="text-box">
+    <a href="#summary" class="btn btn-white btn-animated btn1">AI Summary</a>
+  </span>
+
+</main>
+  <div class="line"></div>
+<section class="book">
+  <span class="bookdetails">
+    <span class="bookimg" >
+      <% book.forEach(book => { %>
+      <% if (book.coverUrl) { %>
+        <img src="<%= book.coverUrl %>" alt="<%= book.name %> Cover" class="book-cover" height="150px" style="float: right;">
+    <% } else { %>
+        <p>No cover available</p>
+    <% } %>
+      </span>
+ 
+      <h3 class="bookname" >
+      <a href="/book/<%= book.id %>" style="font-size: 50px; color:rgb(239, 242, 245);"><%= book.name %> </a>
+    </h3> 
+    <span class="author">-by <strong><%= book.author %></strong>       </span>
+  <span class="rating">
+    Rating: <% for(let i = 1; i <= 5; i++) { %> <% if(i <= book.rating) { %>
+    <span style="color: gold">★</span>
+    <% } else { %>
+    <span style="color: lightgray">☆</span>
+    <% } %> <% } %>
+  </span> 
+  <p class="description"><%= book.description %></p> 
+
+    </span>
+ <hr> <% }) %>
+  
+</section>
+
+<section id="summary">
+  <h1>Get AI Summary of a Book</h1>
+  <form action="/ai-summary" method="POST">  
+    <input type="text" name="title" placeholder="Enter book title" required />
+    <span class="text-box">
+    <button type="submit" class="btn btn-animated btn-white">Get Summary</button>
+  </span>
+  </form>
+  <% if (summarybook) { %>
+  
+    <h2><%= summarybook.title %></h2>
+    <h3>By <%= summarybook.author %></h3>
+    <img src="<%= summarybook.coverUrl %>" alt="Cover of <%= summarybook.title %>" class="book-cover">
+    <p><%= summarybook.description %></p>
+<% } %>
+
+</section>
+
+<%- include('partials/footer') %>

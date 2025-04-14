@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<main class="add">
+<h1 class="addhead">Read a new Book??</h1>
+<p>Enter details here</p>
+
+<form action="/add" class="details" method="POST">
+  <label for="bookname">Book:</label> 
+  <input type="text" id="bookname" name="name" placeholder="Title of book" required />
+
+  <label for="author">Author:</label> 
+  <input type="text" id="author" name="author" placeholder="Author name" required />
+
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" placeholder="Describe the book" />
+
+  <label for="note">Notes:</label>
+  <input type="text" id="note" name="notes" placeholder="What you learnt" required />
+
+  <label for="rating">Rating:</label>
+  <input type="number" id="rating" name="rating" min="1" max="5" style="width: 50px; height: 20px;"/>
+
+  <button type="submit" class="btn btn-white btn-animated" style="width: 140px; height:50px; font-size:20px; border-radius :19px; margin:auto;   ">Add book</button>
+</form>
+</main>
+<%- include('partials/footer') %>
